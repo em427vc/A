@@ -1,0 +1,159 @@
+  
+
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <limits.h>
+#include<string.h>
+
+int *single(int n){
+    int *buffer=(int*)malloc(8*sizeof(int));
+   //int buffer[7];
+    int k;
+    for(int i=8;i>=0;i--){
+    k=n>>i;
+    if(k&1){
+        buffer[i]=1;
+    }
+    else{
+        buffer[i]=0;
+    }
+}
+ for(int i=8;i>=1;i--){
+    printf("  %d",buffer[i-1]);
+    }
+  return buffer;
+}
+
+char *encrypt(char *str){
+    int *a=malloc(strlen(str-1)*4);
+    char *buffer=malloc(1);
+    printf(" aaa %ld   \n",strlen(str));
+    for(int i=0;i<strlen(str)-1;i++){
+        a[i]=str[i];
+         printf(" %d ",a[i]);
+    }
+   // printf("%d %d %d ",a[0],a[1],a[2]);
+if(strlen(str)==2) sprintf(buffer,"%d",a[0]);
+if(strlen(str)==3)sprintf(buffer,"%d%d ",a[0],a[1]);
+if(strlen(str)==4)sprintf(buffer,"%d%d%d ",a[0],a[1],a[2]);
+if(strlen(str)==5)sprintf(buffer,"%d%d%d%d ",a[0],a[1],a[2],a[3]);
+    printf(" \n \n");
+   return buffer;
+    //printf("\n Entered  character is: %d  %d\n",a[0],a[1]);
+}
+
+
+
+int *encrypt2(char *str){
+  //  strrev(str);
+    int *a=malloc(strlen(str-1)*4);
+    char *buffer=malloc(1);
+  //  printf(" aaa %d   \n",strlen(str));
+    for(int i=0;i<strlen(str)-1;i++){
+        a[i]=str[i];
+         printf(" %d ",a[i]);
+    }
+   // printf("%d %d %d ",a[0],a[1],a[2]);
+if(strlen(str)==2) sprintf(buffer,"%d",a[0]);
+if(strlen(str)==3)sprintf(buffer,"%d%d ",a[0],a[1]);
+if(strlen(str)==4)sprintf(buffer,"%d%d%d ",a[0],a[1],a[2]);
+if(strlen(str)==5)sprintf(buffer,"%d%d%d%d ",a[0],a[1],a[2],a[3]);
+    printf(" \n \n");
+  //  printf("STRLEN buffer %d ",);
+   return a;
+    //printf("\n Entered  character is: %d  %d\n",a[0],a[1]);
+}
+
+
+char *decrypt(char *arr){
+    int sum=0; int buff[strlen(arr)*4];
+    int power; 
+    char *buffer=malloc(1);
+  for(int i=0;i<strlen(arr)+1;i++){
+      buff[i]=arr[i]-'0';     //to read single digit
+      // printf("----buff  %d \n",buff[i]);
+  }
+    
+     for(int i=0;i<8;i++){
+         
+         power=pow(2,i);
+       // printf(" sIZE of int  %d \n",INT_MAX);
+        //printf(" \nBuff [%d] is  %d \n",i,buff[i]);
+        if(buff[i]==1)sum+=power;
+       
+ 
+   
+    power=0;
+   // printf("\nSUM  %d \n",sum);
+     }
+     printf("\nBinary %s is DEC  %d \n",arr,sum);
+     sprintf(buffer,"%d",sum);
+     return buffer;
+     
+}
+
+
+int main() {
+    // Write C code here
+   char *name=malloc(1);
+   
+   int abc=1;
+  
+   printf(" Enter a string: ");
+   getline(&name,&abc,stdin);
+ 
+   printf("\n Entered  name is: %s \n",name);
+  //char *ptr=encrypt(name);
+
+  //int *buff=encrypt2(name);
+  int *buff=encrypt2(name);
+  int *abcd;
+  char buffer3[8];
+  
+  abcd=single(*buff);
+
+ // printf("\n *--: %d\n",*abcd);
+ // buffer3[0]=1;
+  //*abcd++;
+//  buffer3[1]=1;
+  sprintf(buffer3,"%d%d%d%d%d%d%d%d",*(abcd+7),*(abcd+6),*(abcd+5),*(abcd+4),*(abcd+3),*(abcd+2),*(abcd+1),*abcd);
+
+  decrypt(buffer3);
+  for(int i=0;i<9;i++){
+     // buffer3[i]=abcd[i];
+    //  *abcd++;
+     
+      
+  }
+
+/*
+  for(int i=0;i<5;i++){
+   printf("\n number: %d\n",*buff);
+   abcd=single(*buff);
+   printf("\n first: %d\n",*abcd);
+    buff++;
+    sprintf(buffer3,"%d",*abcd);
+     if(*buff==0) break;
+  }
+  */
+  
+ 
+  
+
+
+ // decrypt("10000001" );
+ 
+  // decrypt(buff);
+  // decrypt("10000001");
+  // printf("\n Str: %d\n",*buff);
+   
+  // encrypt2
+ 
+    free(name);
+//free(ptr);
+    
+    return 0;
+}
